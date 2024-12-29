@@ -11,6 +11,7 @@ public class sPlayerMove : MonoBehaviour
     public bool fGameEnd;
     [SerializeField] float vFor;
     [SerializeField] float vSide;
+    [SerializeField] sIceWallSpell sIceWallSpell;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,7 +19,8 @@ public class sPlayerMove : MonoBehaviour
     {
         
 
-        fGameStart = true;
+      
+        transform.rotation = Quaternion.identity;
 
     }
 
@@ -31,8 +33,13 @@ public class sPlayerMove : MonoBehaviour
         if (fGameStart && !fGameEnd)
         {
 
-                       
+
+            if (!sIceWallSpell.fIceWall)
+            {
+
                 pMoveForward();
+            }
+            
             pTurn();
 
            

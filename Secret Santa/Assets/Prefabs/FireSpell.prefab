@@ -102,6 +102,10 @@ MonoBehaviour:
   vFire: Fire
   vFireDuration: 10
   vFireDurationEnemy: 3
+  aAudioPlayer: {fileID: 0}
+  aGoblindieWords: {fileID: 8300000, guid: 9a6dcc89bbc36104c84c85646029ba8d, type: 3}
+  aGoblinChiefdiesWords: {fileID: 8300000, guid: c9cb73deb4ca51d4f96380a24f6828f3, type: 3}
+  aDie: {fileID: 8300000, guid: 8b79f35b1fa198242aeafd31c8f5bd17, type: 3}
 --- !u!1 &8802326313823832134
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,8 +150,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.9339623, g: 0.504248, b: 0.17181383, a: 1}
-  m_Intensity: 10
-  m_Range: 15
+  m_Intensity: 4
+  m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

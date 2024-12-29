@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class sAimUpDown : MonoBehaviour
@@ -5,6 +6,7 @@ public class sAimUpDown : MonoBehaviour
     [SerializeField] float vUpperLook;
     [SerializeField] float vLowerLook;
     [SerializeField] sPlayerMove sPlayerMove;
+    [SerializeField] GameObject gPlayer;
     [SerializeField] float sAngleChangeMult;
     [SerializeField] float vUpDown;
     [SerializeField] GameObject gRightHand;
@@ -12,6 +14,10 @@ public class sAimUpDown : MonoBehaviour
     [SerializeField] float vAnglex;
     [SerializeField] float vAngley;
     [SerializeField] float vAnglez;
+    public bool fAnyKeyEver;
+    [SerializeField] TextMeshProUGUI tIns;
+    [SerializeField] AudioSource aAudioSource;
+    [SerializeField] AudioClip aIntroClip;
         
        // / Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +26,13 @@ public class sAimUpDown : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        fAnyKeyEver = false;
+        aAudioSource = gPlayer.GetComponent<AudioSource>();
+
+
+        aAudioSource.clip = aIntroClip;
+        aAudioSource.Play();
+
 
     }
 
@@ -27,13 +40,37 @@ public class sAimUpDown : MonoBehaviour
     void Update()
     {
 
-        transform.position = gRightHand.transform.position; 
-        
+
+        if (Input.anyKeyDown && !sPlayerMove.fGameStart)
+        { 
+            sPlayerMove.fGameStart = true;
+            fAnyKeyEver =(true);
+            tIns.text = "";
+            aAudioSource.clip = aIntroClip;
+            aAudioSource.Play();
+
+
+            vAnglex = transform.eulerAngles.x;
+            vAngley = transform.eulerAngles.y;
+            vAnglez = transform.eulerAngles.z;
+
+            transform.rotation = Quaternion.Euler(0,vAngley,vAnglez);
+
+        }
+
+
+
+
+
+
 
         if (sPlayerMove.fGameStart)
         {
-            vUpDown = Input.GetAxis("MouseY") * sPlayerMove.vPlayerTurnSpeedMouse * Time.deltaTime *sAngleChangeMult;
 
+            if (fAnyKeyEver)
+            {
+                vUpDown = -1* Input.GetAxis("MouseY") * sPlayerMove.vPlayerTurnSpeedMouse * Time.deltaTime * sAngleChangeMult;
+            }
             
 
             vAnglex = transform.eulerAngles.x;

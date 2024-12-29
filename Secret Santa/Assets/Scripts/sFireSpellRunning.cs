@@ -9,8 +9,10 @@ public class sFireSpellRunning : MonoBehaviour
     [SerializeField] string vFire;
     [SerializeField] float vFireDuration;
     [SerializeField] float vFireDurationEnemy;
+   
     
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,26 +30,28 @@ public class sFireSpellRunning : MonoBehaviour
         
         if (other.transform.tag == vWood)
         {
-            other.transform.Find(vFire).gameObject.SetActive(true);
-
-           
-                        
-            Destroy(other.gameObject,vFireDuration);
-
+            other.gameObject.GetComponent<sBurn>().fBurn = true;
+            
+            Destroy(gameObject);
 
         }
 
 
         if (other.transform.tag == vEnemy)
         {
-            other.transform.Find(vFire).gameObject.SetActive(true);
+           
+            
+            other.gameObject.GetComponent<sBurn>().fBurn = true;
+           
+
 
             sEnemy sEnemy = other.gameObject.GetComponent<sEnemy>();
 
-            Destroy(other.gameObject, vFireDurationEnemy);
+            
 
             sEnemy.vHealth = sEnemy.vHealth - vDamage;
 
+            Destroy(gameObject);
 
         }
 
