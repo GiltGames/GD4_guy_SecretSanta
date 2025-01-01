@@ -53,7 +53,7 @@ public class sChild : MonoBehaviour
             gLiving.SetActive(false);
             gSkeleton.SetActive(true);
             fTooLate = true;
-
+          
         }
 
 
@@ -90,17 +90,17 @@ public class sChild : MonoBehaviour
                 gCage.SetActive(false);
                 if (!fAccompanied)
                 { 
-                aAudioSource.clip = aThanks;
-                aAudioSource.Play();
-            }
+                    aAudioSource.clip = aThanks;
+                    aAudioSource.Play();
+                }
                 fAccompanied = true;
             }
 
             else
             {
+
                 aAudioPlayer.clip = aTooLate;
-              
-                aAudioSource.Play();
+                aAudioPlayer.Play();
 
 
             }
